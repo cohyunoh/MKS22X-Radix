@@ -34,7 +34,7 @@ public class LL<E>{
       prev = null;
     }
     //returns value of node
-    public Eeger getData(){
+    public E getData(){
       return data;
     }
     //returns reference of next node
@@ -46,7 +46,7 @@ public class LL<E>{
       return prev;
     }
     // sets the value of node
-    public Eeger setData(E inpt){
+    public E setData(E inpt){
       E oldval = data;
       data = inpt;
       return oldval;
