@@ -1,4 +1,4 @@
-public class LL<E>{
+public class LinkedList<E>{
   class Node{
     private E data;
     private Node next,prev;
