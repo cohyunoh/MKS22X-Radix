@@ -10,10 +10,23 @@ public class Radix{
       if(bucketIndex == 0){
         for(int i = 0; i < data.length; i++){
           int dig = getDigit(data[i]);
-          if(dig == 0){
-            buckets[9].add(data[i]);
-          }else if()
+          if(data[i] < 0){
+            buckets[9-dig] = data[i];
+          }else if(data[i] > 0){
+            buckets[dig + 10] = data[i];
+          }
         }
+        combine(list,buckets);
+      }else{
+        for(int i = 0; i < list.size(); i++){
+          int dig = getDigit(list.);
+          if(data[i] < 0){
+            buckets[9-dig] = data[i];
+          }else if(data[i] > 0){
+            buckets[dig + 10] = data[i];
+          }
+        }
+        combine(list,buckets);
       }
     }
   }
