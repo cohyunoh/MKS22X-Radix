@@ -6,7 +6,16 @@ public class Radix{
     MyLinkedList<Integer> list = new MyLinkedList<Integer>();
     //go through first digits
     int bucketIndex = 0;
-
+    while(bucketIndex < largestDigit){
+      if(bucketIndex == 0){
+        for(int i = 0; i < data.length; i++){
+          int dig = getDigit(data[i]);
+          if(dig == 0){
+            buckets[9].add(data[i]);
+          }else if()
+        }
+      }
+    }
   }
 
   private static int getLargest(int[]data){
@@ -24,6 +33,13 @@ public class Radix{
     value =  value / dig;
     value = value % 10;
     return value;
+  }
+
+  private static void combine(MyLinkedList<Integer> list, MyLinkedList<Integer>[] buckets){
+    for(int i = 0; i < buckets.length; i++){
+      list.extend(buckets[i]);
+      buckets[i].clear();
+    }
   }
 
   public static void main(String[] args) {
