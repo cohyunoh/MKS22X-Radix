@@ -1,3 +1,4 @@
+import java.util.Arrays;
 public class Radix{
   public static void radixsort(int[]data){
     @SuppressWarnings({"unchecked" , "rawtypes"})
@@ -65,14 +66,9 @@ public class Radix{
     }
   }
   public static void main(String[] args) {
-    System.out.println(getDigit(0, 987654321));
-    System.out.println(getDigit(1, 987654321));
-    System.out.println(getDigit(2, 987654321));
-    System.out.println(getDigit(3, 987654321));
-    System.out.println(getDigit(4, 987654321));
-    System.out.println(getDigit(5, 987654321));
-    System.out.println(getDigit(6, 987654321));
-    System.out.println(getDigit(7, 987654321));
-    System.out.println(getDigit(8, 987654321));
+    int[] data = {12, -31, 24, -42, 02, -01, 14, -21};
+    System.out.println(Arrays.toString(data));
+    radixsort(data);
+    System.out.println(Arrays.toString(data));
   }
 }
