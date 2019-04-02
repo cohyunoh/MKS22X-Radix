@@ -147,7 +147,7 @@ public class MyLinkedList<E>{
     other.clear();
   }
 
-  private Node getNode(int index) {
+  public Node getNode(int index) {
     Node ans = start;
     //will check if it's a null value
     if (index >= size || index < 0){
@@ -167,7 +167,7 @@ public class MyLinkedList<E>{
     return size;
   }
 
-  private void clear(){
+  public void clear(){
     size = 0;
     start = new Node();
     end = new Node();

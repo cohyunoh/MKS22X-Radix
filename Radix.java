@@ -9,24 +9,27 @@ public class Radix{
     while(bucketIndex < largestDigit){
       if(bucketIndex == 0){
         for(int i = 0; i < data.length; i++){
-          int dig = getDigit(data[i]);
+          int dig = getDigit(bucketIndex, data[i]);
           if(data[i] < 0){
-            buckets[9-dig] = data[i];
+            buckets[9-dig].add(data[i]);
           }else if(data[i] > 0){
-            buckets[dig + 10] = data[i];
+            buckets[dig + 10].add(data[i]);
           }
         }
         combine(list,buckets);
+        bucketIndex ++;
       }else{
         for(int i = 0; i < list.size(); i++){
-          int dig = getDigit(list.);
-          if(data[i] < 0){
-            buckets[9-dig] = data[i];
-          }else if(data[i] > 0){
-            buckets[dig + 10] = data[i];
+          Integer val = list.getNode(i).getData();
+          int dig = getDigit(bucketIndex, val);
+          if(val < 0){
+            buckets[9-dig].add(val);
+          }else if(val > 0){
+            buckets[dig + 10].add(val);
           }
         }
         combine(list,buckets);
+        bucketIndex ++;
       }
     }
   }
@@ -41,7 +44,7 @@ public class Radix{
     return ans;
   }
 
-  private static int getDigit(int digit, int value){
+  private static int getDigit(int digit, Integer value){
     int dig = (int)Math.pow(10 , digit);
     value =  value / dig;
     value = value % 10;
