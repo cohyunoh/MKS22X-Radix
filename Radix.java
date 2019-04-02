@@ -32,6 +32,7 @@ public class Radix{
         bucketIndex ++;
       }
     }
+    combine(list, data);
   }
 
   private static int getLargest(int[]data){
@@ -58,6 +59,11 @@ public class Radix{
     }
   }
 
+  private static void combine(MyLinkedList<Integer> list, int[] data){
+    for(int i = 0; i < data.length; i++){
+      data[i] = (int)list.getNode(i).getData();
+    }
+  }
   public static void main(String[] args) {
     System.out.println(getDigit(0, 987654321));
     System.out.println(getDigit(1, 987654321));
