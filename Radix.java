@@ -8,6 +8,7 @@ public class Radix{
     //go through first digits
     int bucketIndex = 0;
     while(bucketIndex < largestDigit){
+      System.out.println(list);
       if(bucketIndex == 0){
         for(int i = 0; i < data.length; i++){
           int dig = getDigit(bucketIndex, data[i]);
@@ -27,7 +28,7 @@ public class Radix{
         bucketIndex ++;
       }else{
         for(int i = 0; i < list.size(); i++){
-          Integer val = list.getNode(i).getData();
+          Integer val = list.removeFront();
           int dig = getDigit(bucketIndex, val);
           if(val < 0){
             if(buckets[9-dig] == null){
@@ -41,9 +42,11 @@ public class Radix{
             buckets[dig + 10].add(val);
           }
         }
+        list.clear();
         combine(list,buckets);
         bucketIndex ++;
       }
+      System.out.println(list);
     }
     combine(list, data);
   }

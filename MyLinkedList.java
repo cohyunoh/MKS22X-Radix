@@ -140,9 +140,14 @@ public class MyLinkedList<E>{
   }
 
   public void extend(MyLinkedList<E> other){
-    end.setNext(other.getNode(0));
-    other.getNode(0).setPrev(end);
-    end = other.getNode(other.size() - 1);
+    if(this.size() > 0){
+      end.setNext(other.getNode(0));
+      other.getNode(0).setPrev(end);
+      end = other.getNode(other.size() - 1);
+    }else{
+      start = other.getNode(0);
+      end = other.getNode(other.size() - 1);
+    }
     size += other.size();
     other.clear();
   }
@@ -171,5 +176,18 @@ public class MyLinkedList<E>{
     size = 0;
     start = new Node();
     end = new Node();
+  }
+
+  public static void main(String[] args) {
+    MyLinkedList<Integer> da = new MyLinkedList<Integer>();
+    MyLinkedList<Integer> a = new MyLinkedList<Integer>();
+    System.out.println(da);
+    a.add(0);
+    a.add(2);
+    a.add(2);
+    a.add(5);
+    System.out.println(a);
+    da.extend(a);
+    System.out.println(da);
   }
 }
