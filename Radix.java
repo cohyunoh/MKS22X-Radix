@@ -12,8 +12,14 @@ public class Radix{
         for(int i = 0; i < data.length; i++){
           int dig = getDigit(bucketIndex, data[i]);
           if(data[i] < 0){
+            if(buckets[9-dig] == null){
+              buckets[9-dig] = new MyLinkedList<Integer>();
+            }
             buckets[9-dig].add(data[i]);
           }else if(data[i] > 0){
+            if(buckets[dig + 10] == null){
+              buckets[dig + 10] = new MyLinkedList<Integer>();
+            }
             buckets[dig + 10].add(data[i]);
           }
         }
@@ -24,8 +30,14 @@ public class Radix{
           Integer val = list.getNode(i).getData();
           int dig = getDigit(bucketIndex, val);
           if(val < 0){
+            if(buckets[9-dig] == null){
+              buckets[9-dig] = new MyLinkedList<Integer>();
+            }
             buckets[9-dig].add(val);
           }else if(val > 0){
+            if(buckets[dig + 10] == null){
+              buckets[dig + 10] = new MyLinkedList<Integer>();
+            }
             buckets[dig + 10].add(val);
           }
         }
@@ -65,10 +77,12 @@ public class Radix{
       data[i] = (int)list.getNode(i).getData();
     }
   }
+
   public static void main(String[] args) {
     int[] data = {12, -31, 24, -42, 02, -01, 14, -21};
     System.out.println(Arrays.toString(data));
     radixsort(data);
     System.out.println(Arrays.toString(data));
   }
+
 }
