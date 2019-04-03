@@ -27,7 +27,7 @@ public class Radix{
         bucketIndex ++;
       }else{
         int size = list.size();
-        System.out.println(list);
+        //System.out.println(list);
         for(int i = 0; i < size; i++){
           Integer val = list.removeFront();
           int dig = getDigit(bucketIndex, val);
