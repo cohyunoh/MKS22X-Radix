@@ -121,21 +121,26 @@ public class MyLinkedList<E>{
 
 
   public E removeFront(){
-    //create a node to store the new start node, which will be the next node from start
-    Node newStart = start.next();
-    //set the next node's prev reference from the start node to null
-    //we are making it a start node
-    newStart.setPrev(null);
-    //we set the next reference in the old start to null, which means we will never be able
-    //to reference it
-    start.setNext(null);
     //this stores the old start's data value
     E oldInt =  start.getData();
-    //this reassigns start to the new start
-    start = newStart;
-    //decrease the size by 1
-    size -= 1;
-    //returns the old data value
+    if(this.size() == 1){
+      this.clear();
+    }else{
+      //create a node to store the new start node, which will be the next node from start
+      Node newStart = start.next();
+      //set the next node's prev reference from the start node to null
+      //we are making it a start node
+      newStart.setPrev(null);
+      //we set the next reference in the old start to null, which means we will never be able
+      //to reference it
+      start.setNext(null);
+
+      //this reassigns start to the new start
+      start = newStart;
+      //decrease the size by 1
+      size -= 1;
+      //returns the old data value
+    }
     return oldInt;
   }
 
@@ -152,11 +157,11 @@ public class MyLinkedList<E>{
     other.clear();
   }
 
-  public Node getNode(int index) {
+  private Node getNode(int index) {
     Node ans = start;
     //will check if it's a null value
     if (index >= size || index < 0){
-      throw new NullPointerException("No Node at Index");
+      throw new NullPointerException("No Node at Index: " + index);
     }
     else{
       //this will loop until the right node is selected

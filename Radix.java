@@ -8,7 +8,6 @@ public class Radix{
     //go through first digits
     int bucketIndex = 0;
     while(bucketIndex < largestDigit){
-      System.out.println(list);
       if(bucketIndex == 0){
         for(int i = 0; i < data.length; i++){
           int dig = getDigit(bucketIndex, data[i]);
@@ -27,7 +26,9 @@ public class Radix{
         combine(list,buckets);
         bucketIndex ++;
       }else{
-        for(int i = 0; i < list.size(); i++){
+        int size = list.size();
+        System.out.println(list);
+        for(int i = 0; i < size; i++){
           Integer val = list.removeFront();
           int dig = getDigit(bucketIndex, val);
           if(val < 0){
@@ -42,7 +43,6 @@ public class Radix{
             buckets[dig + 10].add(val);
           }
         }
-        list.clear();
         combine(list,buckets);
         bucketIndex ++;
       }
@@ -71,15 +71,17 @@ public class Radix{
   private static void combine(MyLinkedList<Integer> list, MyLinkedList<Integer>[] buckets){
     for(int i = 0; i < buckets.length; i++){
       if(buckets[i] != null){
-        list.extend(buckets[i]);
-        buckets[i].clear();
+        if(buckets[i].size() != 0){
+          list.extend(buckets[i]);
+          buckets[i].clear();
+        }
       }
     }
   }
 
   private static void combine(MyLinkedList<Integer> list, int[] data){
     for(int i = 0; i < data.length; i++){
-      data[i] = (int)list.getNode(i).getData();
+      data[i] = (int)list.removeFront();
     }
   }
 
