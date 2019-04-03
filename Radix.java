@@ -63,6 +63,7 @@ public class Radix{
 
   private static int getDigit(int digit, Integer value){
     int dig = (int)Math.pow(10 , digit);
+    value = Math.abs(value);
     value =  value / dig;
     value = value % 10;
     return value;
