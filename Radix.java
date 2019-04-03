@@ -67,8 +67,10 @@ public class Radix{
 
   private static void combine(MyLinkedList<Integer> list, MyLinkedList<Integer>[] buckets){
     for(int i = 0; i < buckets.length; i++){
-      list.extend(buckets[i]);
-      buckets[i].clear();
+      if(buckets[i] != null){
+        list.extend(buckets[i]);
+        buckets[i].clear();
+      }
     }
   }
 
