@@ -1,6 +1,9 @@
 import java.util.Arrays;
 public class Radix{
   public static void radixsort(int[]data){
+    if(data.length == 0){
+      return ;
+    }
     @SuppressWarnings({"unchecked" , "rawtypes"})
     MyLinkedList<Integer>[] buckets = new MyLinkedList[20];
     //this is the highest digit in the list
@@ -119,9 +122,13 @@ public class Radix{
 
   public static void main(String[] args) {
     int[] data = {12, -31, 24, -42, 02, -01, 14, -21, 00};
+    int[] data1 = {};
     System.out.println(Arrays.toString(data));
     radixsort(data);
     System.out.println(Arrays.toString(data));
+    System.out.println(Arrays.toString(data1));
+    radixsort(data1);
+    System.out.println(Arrays.toString(data1));
   }
 
 }
