@@ -2,7 +2,7 @@ import java.util.Arrays;
 public class Driver{
   public static void main(String[]args){
   System.out.println("Size\t\tMax Value\tquick/builtin ratio ");
-  int[]MAX_LIST = {1000000000,500,10};
+  int[]MAX_LIST = {50,25,10};
   for(int MAX : MAX_LIST){
     for(int size = 31250; size < 2000001; size*=2){
       long qtime=0;
@@ -26,6 +26,8 @@ public class Driver{
         btime+= t2 - t1;
         if(!Arrays.equals(data1,data2)){
           System.out.println("FAIL TO SORT!");
+          System.out.println(Arrays.toString(data2));
+          System.out.println(Arrays.toString(data1));
           System.exit(0);
         }
       }
