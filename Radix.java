@@ -37,8 +37,9 @@ public class Radix{
         buckets[dig + 9].add(data[i]);
       }
     }
-    //transfer the values in order to data
-    combine(buckets, data);
+    //transfer the values in order to list
+    combine(list,buckets);
+    combine(list, data);
   }
   private static int getLargest(int[]data){
     //starting with the first element, compare the ans variable to all the elements to find th greatest value
@@ -62,16 +63,13 @@ public class Radix{
     return value;
   }
 
-  private static void combine(MyLinkedList<Integer>[] buckets, int[] data){
+  private static void combine(MyLinkedList<Integer> list, MyLinkedList<Integer>[] buckets){
     //iterates through the buckets array and list extends those linkedlists in each bucket
-    int index = 0;
     for(int i = 0; i < buckets.length; i++){
       if(buckets[i] != null){
-        int size = buckets[i].size();
-        while(size > 0){
-          data[index] = (int)buckets[i].removeFront();
-          index ++;
-          size --;
+        if(buckets[i].size() != 0){
+          list.extend(buckets[i]);
+          buckets[i].clear();
         }
       }
     }
