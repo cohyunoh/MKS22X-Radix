@@ -26,7 +26,7 @@ public class Radix{
             //add it to the index of 9 minus the digit
             buckets[9-dig].add(data[i]);
           //if the number is positive
-          }else if(data[i] > 0){
+        }else if(data[i] >= 0){
             //make sure the bucket we are adding to is instantiated
             if(buckets[dig + 10] == null){
               buckets[dig + 10] = new MyLinkedList<Integer>();
@@ -56,7 +56,7 @@ public class Radix{
             }
 
             buckets[9-dig].add(val);
-          }else if(val > 0){
+          }else if(val >= 0){
             //make sure the bucket we are adding to is instantiated
             if(buckets[dig + 10] == null){
               buckets[dig + 10] = new MyLinkedList<Integer>();
@@ -118,7 +118,7 @@ public class Radix{
   }
 
   public static void main(String[] args) {
-    int[] data = {12, -31, 24, -42, 02, -01, 14, -21};
+    int[] data = {12, -31, 24, -42, 02, -01, 14, -21, 00};
     System.out.println(Arrays.toString(data));
     radixsort(data);
     System.out.println(Arrays.toString(data));
