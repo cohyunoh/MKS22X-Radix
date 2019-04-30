@@ -35,7 +35,6 @@ public class Radix{
         }
         combine(list,buckets);
         digit ++;
-        digit ++;
       }
     }
     combine(list, data);
