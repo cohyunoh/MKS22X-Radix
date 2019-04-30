@@ -10,7 +10,7 @@ public class Radix{
       return ;
     }
     MyLinkedList<Integer> list = new MyLinkedList<Integer>();
-    int MAX = getLargest(data, list) + "".length();
+    int MAX = getLargest(data, list);
     int digit = 0;
     while(digit < MAX){
       int size = list.size();
@@ -35,10 +35,10 @@ public class Radix{
   }
   private static int getLargest(int[]data, MyLinkedList<Integer> list){
     //starting with the first element, compare the ans variable to all the elements to find th greatest value
-    int ans = data[0];
+    int ans = 0;
     for(int i = 0; i < data.length; i++){
-      if(data[i] > ans){
-        ans = data[i];
+      if (Math.abs(data[i]) > Math.pow(10, ans)){
+        ans = (int)Math.ceil(Math.log10(Math.abs(data[i])));
       }
       list.add(data[i]);
     }
@@ -76,7 +76,7 @@ public class Radix{
   }
 
   public static void main(String[] args) {
-    int[] data = {12, -31, 24, -42, 02, -01, 14, -21, 00};
+    int[] data = {1, -3, 2, -4, 0, -0, 1, -1, 0};
     int[] data1 = {};
     System.out.println(Arrays.toString(data));
     radixsort(data);
@@ -84,6 +84,8 @@ public class Radix{
     System.out.println(Arrays.toString(data1));
     radixsort(data1);
     System.out.println(Arrays.toString(data1));
+    System.out.println(Math.log10(12));
+    System.out.println(Math.ceil(Math.log10(12)));
   }
 
 }
