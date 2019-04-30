@@ -84,8 +84,8 @@ public class Radix{
     System.out.println(Arrays.toString(data1));
     radixsort(data1);
     System.out.println(Arrays.toString(data1));
-    System.out.println(Math.log10(12));
-    System.out.println(Math.ceil(Math.log10(12)));
+    System.out.println(Math.log10(1));
+    System.out.println(Math.ceil(Math.log10(1)));
   }
 
 }
