@@ -50,20 +50,16 @@ public class Radix{
     //this yields us only the digits from our desire digit onwards until the last digit (from right to left)
     //we then mod this by 10 to only get our desired digit
     int dig = (int)Math.pow(10 , digit);
-    value = Math.abs(value);
-    value =  value / dig;
-    value = value % 10;
+    value = (Math.abs(value) / dig) % 10;
     return value;
   }
 
   private static void combine(MyLinkedList<Integer> list, MyLinkedList<Integer>[] buckets){
     //iterates through the buckets array and list extends those linkedlists in each bucket
     for(int i = 0; i < buckets.length; i++){
-      if(buckets[i] != null){
-        if(buckets[i].size() != 0){
-          list.extend(buckets[i]);
-          buckets[i].clear();
-        }
+      if(buckets[i].size() > 0){
+        list.extend(buckets[i]);
+        buckets[i].clear();
       }
     }
   }
