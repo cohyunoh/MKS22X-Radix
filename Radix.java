@@ -50,9 +50,7 @@ public class Radix{
     //this yields us only the digits from our desire digit onwards until the last digit (from right to left)
     //we then mod this by 10 to only get our desired digit
     int dig = (int)Math.pow(10 , digit);
-    value = Math.abs(value);
-    value =  value / dig;
-    value = value % 10;
+    value = (Math.abs(value) / dig) % 10;
     return value;
   }
 
