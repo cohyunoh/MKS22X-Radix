@@ -1,53 +1,53 @@
 import java.util.Arrays;
 public class Radix{
   @SuppressWarnings({"unchecked" , "rawtypes"})
-  private static MyLinkedList<Integer>[] buckets = new MyLinkedList[19];
+  private static MyLinkedList<Integer>[] buckets = new MyLinkedList[20];
   public static void radixsort(int[]data){
     if(data.length == 0){
       return ;
     }
-    int digitIndex = 0;
-    int MAX = getLargest(data) + "".length();
-    while(digitIndex < MAX){
-      radixHelper(digitIndex, data);
-      digitIndex++;
-    }
-  }
-
-  private static void radixHelper(int digitIndex, int[]data){
     MyLinkedList<Integer> list = new MyLinkedList<Integer>();
-    for(int i = 0; i < data.length; i++){
-      //get the digit
-      int dig = getDigit(digitIndex, data[i]);
-      //if the number is negative
-      if(data[i] < 0){
-        //make sure the bucket we are adding to is instantiated
-        if(buckets[9-dig] == null){
-          buckets[9-dig] = new MyLinkedList<Integer>();
+    int MAX = getLargest(data, list) + "".length();
+    int digit = 0;
+    while(digit < MAX){
+      int size = list.size();
+      //System.out.println(list);
+      for(int i = 0; i < size; i++){
+        //get the first value of the list and remove it at the same time
+        Integer val = list.removeFront();
+        //get the desired digit
+        int dig = getDigit(digit, val);
+        //if the number is positive
+        if(val < 0){
+          //make sure the bucket we are adding to is instantiated
+          if(buckets[9-dig] == null){
+            //add it to the index of 9 minus the digit
+            buckets[9-dig] = new MyLinkedList<Integer>();
+          }
+          buckets[9-dig].add(val);
+        }else if(val >= 0){
+          //make sure the bucket we are adding to is instantiated
+          if(buckets[dig + 10] == null){
+            buckets[dig + 10] = new MyLinkedList<Integer>();
+          }
+          //add it to the index of 10 plus the digit
+          buckets[dig + 10].add(val);
         }
-        //add it to the index of 9 minus the digit
-        buckets[9-dig].add(data[i]);
-      //if the number is positive
-    }else if(data[i] >= 0){
-        //make sure the bucket we are adding to is instantiated
-        if(buckets[dig + 9] == null){
-          buckets[dig + 9] = new MyLinkedList<Integer>();
-        }
-        //add it to the index of 10 plus the digit
-        buckets[dig + 9].add(data[i]);
+        combine(list,buckets);
+        digit ++;
+        digit ++;
       }
     }
-    //transfer the values in order to list
-    combine(list,buckets);
     combine(list, data);
   }
-  private static int getLargest(int[]data){
+  private static int getLargest(int[]data, MyLinkedList<Integer> list){
     //starting with the first element, compare the ans variable to all the elements to find th greatest value
     int ans = data[0];
-    for(int i = 1; i < data.length; i++){
+    for(int i = 0; i < data.length; i++){
       if(data[i] > ans){
         ans = data[i];
       }
+      list.add(data[i]);
     }
     return ans;
   }
