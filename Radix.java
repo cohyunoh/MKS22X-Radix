@@ -1,8 +1,11 @@
 import java.util.Arrays;
 public class Radix{
-  @SuppressWarnings({"unchecked" , "rawtypes"})
-  private static MyLinkedList<Integer>[] buckets = new MyLinkedList[20];
   public static void radixsort(int[]data){
+    @SuppressWarnings({"unchecked" , "rawtypes"})
+    MyLinkedList<Integer>[] buckets = new MyLinkedList[20];
+    for(int i = 0; i < 20; i++){
+      buckets[i] = new MyLinkedList<Integer>();
+    }
     if(data.length == 0){
       return ;
     }
@@ -19,23 +22,14 @@ public class Radix{
         int dig = getDigit(digit, val);
         //if the number is positive
         if(val < 0){
-          //make sure the bucket we are adding to is instantiated
-          if(buckets[9-dig] == null){
-            //add it to the index of 9 minus the digit
-            buckets[9-dig] = new MyLinkedList<Integer>();
-          }
           buckets[9-dig].add(val);
-        }else if(val >= 0){
-          //make sure the bucket we are adding to is instantiated
-          if(buckets[dig + 10] == null){
-            buckets[dig + 10] = new MyLinkedList<Integer>();
-          }
+        }else{
           //add it to the index of 10 plus the digit
           buckets[dig + 10].add(val);
         }
-        combine(list,buckets);
-        digit ++;
       }
+      combine(list,buckets);
+      digit ++;
     }
     combine(list, data);
   }
